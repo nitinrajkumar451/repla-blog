@@ -14,5 +14,5 @@
 <% end%>
 
 <div class="mt-16">
-<%== pagy_nav(@pagy)%>
+  <%== pagy_nav(@pagy) if @pagy.pages>1%>
 </div>
