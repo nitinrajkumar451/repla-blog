@@ -8,6 +8,12 @@ class FilmsController < ApplicationController
 
   # GET /films/1 or /films/1.json
   def show
+    film_ids = Film.pluck(:id)
+    current_index = film_ids.index(@film.id)
+    previous_id = film_ids[current_index - 1] if current_index > 0
+    next_id = film_ids[current_index + 1] if current_index < film_ids.length - 1
+    render :show, locals: { previous_id: previous_id, next_id: next_id }
+
   end
 
   # GET /films/new

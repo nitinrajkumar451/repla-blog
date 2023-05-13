@@ -10,14 +10,22 @@
     <%= link_to 'New film', new_film_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 
   </div>
+
   <div id="films" class="min-w-full">
-    <%@films.each do |film|%>
-      <div>
-        <h2><%= link_to film.title, film%></h2>
-      </div>
-      <div>
-        <h3><%= film.gist%></h3>
-       <div>
-    <% end%>
+    <div class="w-full flex flex-row">
+
+      <%@films.each do |film|%>
+        <div  class="flex flex-column">
+          <div>
+            <h2><%= link_to film.title, film%></h2>
+          </div>
+          <div>
+            <% if film.poster.present? %>
+              <h2><%= image_tag film.poster%></h2>
+            <% end %>  
+         </div>
+        </div>
+      <% end%>
+    </div> 
   </div>
 </div>
