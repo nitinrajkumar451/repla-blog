@@ -1,0 +1,51 @@
+<%= form_with(model: film, class: "contents") do |form| %>
+  <% if film.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(film.errors.count, "error") %> prohibited this film from being saved:</h2>
+
+      <ul>
+        <% film.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mt-8">
+    <%= form.label :poster%>
+    <% if @film.poster.present? %>
+      <div id="<%= dom_id(film, :poster) %>">
+        <%= image_tag @film.poster, class: "w-1/3" %>
+        <%# <%= link_to "Remove cover image", film_poster_path(film), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%> %>
+      </div>
+    <% end %> 
+    <%= form.file_field :poster%>
+  </div>
+  <div class="mt-8">
+    <%= form.label :title%>
+    <%= form.text_field :title%>
+  </div>
+  <div class="mt-8">
+    <%= form.label :gist%>
+    <%= form.text_field :gist%>
+  </div>
+  <div class="mt-8">
+    <%= form.label :language%>
+    <%= form.text_field :language%>
+  </div>
+  <div class="mt-8">
+    <%= form.label :run_time%>
+    <%= form.text_field :run_time%>
+  </div>
+  <div class="mt-8">
+    <%= form.label :watch_at%>
+    <%= form.text_field :watch_at%>
+  </div>
+  <div class="mt-8">
+    <%= form.label :can_watch%>
+    <%= form.text_field :can_watch%>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
