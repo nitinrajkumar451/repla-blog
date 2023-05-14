@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   # get "editorial", to: "editorials#editorial", as: "editorial"
   get "reviews", to: "pages#reviews", as: "reviews" 
   # Defines the root path route ("/")
-  root "blog_posts#index"
+  root "films#index"
 end

@@ -17,15 +17,7 @@
     <div class= "max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <%= render "layouts/navbar"%>
     </div>
-    <div>
-      <% if user_signed_in?%>
-        <%= link_to "New Blog Post", new_blog_post_path %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete%>
-      <%# <% else %> 
-        <%# <%= link_to "Login", new_user_session_path %> 
-        <%# <%= link_to "Sign up", new_user_registration_path %> 
-      <% end %>
-    </div>
+
     <%= yield %>
   </body>
 </html>
