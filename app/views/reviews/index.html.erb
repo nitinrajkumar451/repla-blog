@@ -6,20 +6,25 @@
   <div class="flex justify-center items-center">
     <h1 class="font-bold text-4xl">Reviews</h1>
   </div>
-  <div class="flex justify-end">
-    <%= link_to 'New Review', new_review_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 
-  </div>
-
+  <% if user_signed_in?%>
+    <div class="flex justify-end">
+      <%= link_to 'New Review', new_review_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>  
+    </div>
+    <div class="flex justify-end mt-2">
+      <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"%>
+    </div>
+  <% end %>
   <div id="reviews" class="min-w-full">
-    <div class="w-full flex flex-row">
+    <div class="w-full flex flex-col flex-wrap">
 
       <%@reviews.each do |review|%>
-        <div  class="flex flex-column">
+        <div  class="p-4">
           <div>
             <h2><%= link_to review.headline, review%></h2>
           </div>
           <div>
+<% puts review.inspect, "hello", review.film.poster.present?%>
             <% if review.film.poster.present? %>
               <h2><%= image_tag review.film.poster%></h2>
             <% end %>  

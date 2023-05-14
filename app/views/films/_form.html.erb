@@ -15,7 +15,6 @@
     <% if @film.poster.present? %>
       <div id="<%= dom_id(film, :poster) %>">
         <%= image_tag @film.poster, class: "w-1/3" %>
-        <%# <%= link_to "Remove cover image", film_poster_path(film), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%> %>
       </div>
     <% end %> 
     <%= form.file_field :poster%>
