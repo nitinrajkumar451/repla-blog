@@ -17,11 +17,11 @@
       <%@reviews.each do |review|%>
         <div  class="flex flex-column">
           <div>
-            <h2><%= link_to review.title, review%></h2>
+            <h2><%= link_to review.headline, review%></h2>
           </div>
           <div>
-            <% if review.poster.present? %>
-              <h2><%= image_tag review.poster%></h2>
+            <% if review.film.poster.present? %>
+              <h2><%= image_tag review.film.poster%></h2>
             <% end %>  
          </div>
         </div>
