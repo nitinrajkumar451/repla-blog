@@ -1,0 +1,49 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <div class="flex h-screen">
+      <!-- Left side with the image -->
+      <% if previous_id.present? %>
+        <div class="w-1/12">
+          <%= link_to film_path(previous_id) do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          <% end %>
+
+        </div>
+      <% end %>
+
+      <div class="w-1/2">
+        <%= image_tag @film.poster, class: " object-cover object-center" if @film.poster.present? %>
+      </div>
+      <% if next_id.present? %>
+        <div class="w-1/12">
+          <%= link_to film_path(next_id) do %>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+          <% end %>
+
+        </div>
+      <% end %>
+      <!-- Right side with the image info -->
+      <div class="w-1/2 p-8">
+        <h1 class="text-2xl font-bold mb-4"><%= @film.title %></h1>
+        <p class="text-gray-700 text-lg mb-4"><%= @film.gist %></p>
+        <p class="text-gray-700 text-lg mb-4"><%= @film.language %></p>
+        <p class="text-gray-700 text-lg mb-4"><%= @film.run_time %></p>
+        <p class="text-gray-700 text-lg mb-4"><%= @film.can_watch %></p>
+      </div>
+    </div>
+
+    <%= link_to 'Edit this film', edit_film_path(@film), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this film', film_path(@film), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to 'Back to films', films_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>

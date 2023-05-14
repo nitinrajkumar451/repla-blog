@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_09_185517) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_14_052158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_185517) do
     t.datetime "published_at"
   end
 
+  create_table "films", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "language"
+    t.string "run_time"
+    t.string "gist"
+    t.string "watch_at"
+    t.string "can_watch"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "film_id", null: false
+    t.string "headline"
+    t.string "content"
+    t.index ["film_id"], name: "index_reviews_on_film_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,4 +93,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_185517) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "reviews", "films"
 end
