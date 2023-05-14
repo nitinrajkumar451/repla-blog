@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :films
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,13 +15,9 @@ Rails.application.routes.draw do
   end
   namespace :pages do
     get "about", to: "pages#about", as: "about"
-    get "editorial", to: "editorials#editorial", as: "editorial"
-    get "reviews", to: "pages#reviews", as: "reviews"  
   end
   #about page route
   get "about", to: "pages#about", as: "about"
-  # get "editorial", to: "editorials#editorial", as: "editorial"
-  get "reviews", to: "pages#reviews", as: "reviews" 
-  # Defines the root path route ("/")
+# Defines the root path route ("/")
   root "films#index"
 end
