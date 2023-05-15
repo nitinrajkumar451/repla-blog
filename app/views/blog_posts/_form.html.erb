@@ -1,5 +1,5 @@
 
-<%= form_with model: @blog_post do |form|%>
+<%= form_with(model: @blog_post, class: "contents") do |form|%>
 <% if form.object.errors.any?%>
   <div>
     <% form.object.errors.full_messages.each do |message| %>
@@ -36,8 +36,10 @@
     <%= form.datetime_select :published_at, include_blank: true%>
   </div>
 
-  <div class="mt-8">
-    <%= form.button %>
+  <div class="mt-8 mb-16 inline-flex">
+    <div class= "inline">
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
   </div>
 
 <% end %>
