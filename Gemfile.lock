@@ -156,6 +156,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
+    nokogumbo (1.5.0)
+      nokogiri
     orm_adapter (0.5.0)
     pagy (6.0.4)
     pg (1.5.3)
@@ -203,6 +205,10 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    sanitize (4.6.6)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.4.4)
+      nokogumbo (~> 1.4)
     selenium-webdriver (4.9.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -261,6 +267,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
+  sanitize (~> 4.0, >= 4.0.1)
   selenium-webdriver
   sprockets-rails
   stimulus-rails
