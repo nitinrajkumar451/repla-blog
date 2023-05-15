@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_111544) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_165930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_111544) do
     t.bigint "film_id", null: false
     t.string "headline"
     t.string "content"
+    t.datetime "published_at"
     t.index ["film_id"], name: "index_reviews_on_film_id"
   end
 

@@ -15,22 +15,35 @@
       <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium"%>
     </div>
   <% end %>
-  <div id="reviews" class="min-w-full">
-    <div class="w-full flex flex-col flex-wrap">
-
-      <%@reviews.each do |review|%>
-        <div  class="p-4">
-          <div>
-            <h2><%= link_to review.headline, review%></h2>
+  
+  <div id="reviews" class="flex overflow-x-scroll">
+    <div class="grid grid-cols-4 gap-4">
+      <% @reviews.each do |review| %>
+        <div class="col-span-1">
+          <div class="max-w-xs mx-auto">
+            <div class="w-64 bg-no-repeat bg-center bg-cover mx-4">
+              <% if review.film.poster.present? %>
+                <div class="w-64 h-64 overflow-hidden">
+                  <%= image_tag review.film.poster, class: "w-64 h-64 object-contain" %>
+                </div>
+              <% end %>
+              <div class="text-center mt-4">
+                <h2 class="font-bold text-lg"><%= link_to review.headline, review %></h2>
+              </div>
+              <p>
+                <%= truncate(sanitize(review.content.to_plain_text, tags: []), length: 100) %>
+              </p>
+              <div>
+                <% if review.draft? %>
+                  <div class="text-center mt-4 p-2 rounded bg-gray-100 text-gray-900">Draft</div>
+                <% elsif review.scheduled? %>
+                  <div class="text-center mt-4 p-2 rounded bg-blue-100 text-gray-900">Scheduled</div>
+                <% end %>
+              </div>
+            </div>
           </div>
-          <div>
-<% puts review.inspect, "hello", review.film.poster.present?%>
-            <% if review.film.poster.present? %>
-              <h2><%= image_tag review.film.poster%></h2>
-            <% end %>  
-         </div>
         </div>
-      <% end%>
-    </div> 
+      <% end %>
+    </div>
   </div>
 </div>
