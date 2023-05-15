@@ -3,12 +3,12 @@ class FilmsController < ApplicationController
 
   # GET /films or /films.json
   def index
-    @films = Film.all
+    @films = user_signed_in? ? Film.sorted : Film.published.sorted
   end
 
   # GET /films/1 or /films/1.json
   def show
-    film_ids = Film.pluck(:id)
+    film_ids = user_signed_in? ? Film.pluck(:id) : Film.published.pluck(:id)
     current_index = film_ids.index(@film.id)
     previous_id = film_ids[current_index - 1] if current_index > 0
     next_id = film_ids[current_index + 1] if current_index < film_ids.length - 1
@@ -55,10 +55,12 @@ class FilmsController < ApplicationController
 
   # DELETE /films/1 or /films/1.json
   def destroy
+    film_id = @film.id
+    Review.where(film_id: film_id).destroy_all
     @film.destroy
 
     respond_to do |format|
-      format.html { redirect_to films_url, notice: "Film was successfully destroyed." }
+      format.html { redirect_to films_url, notice: "Film and it's associated reviews were successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -71,6 +73,6 @@ class FilmsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def film_params
-      params.require(:film).permit(:poster, :title, :language, :gist, :can_watch, :run_time)
+      params.require(:film).permit(:poster, :title, :language, :gist, :can_watch, :run_time, :published_at)
     end
 end
