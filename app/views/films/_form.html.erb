@@ -43,8 +43,13 @@
     <%= form.label :can_watch%>
     <%= form.text_field :can_watch%>
   </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="mt-8">
+    <%= form.label :published_at%>
+    <%= form.datetime_select :published_at, include_blank: true%>
+  </div>
+  <div class="mt-8 mb-16 inline-flex">
+    <div class= "inline">
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
   </div>
 <% end %>

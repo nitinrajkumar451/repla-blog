@@ -3,11 +3,12 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
-    @reviews = Review.all
+    @reviews = user_signed_in? ? Review.sorted : Review.published.sorted
   end
 
   # GET /reviews/1 or /reviews/1.json
   def show
+
   end
 
   # GET /reviews/new
@@ -60,12 +61,14 @@ class ReviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
-      @review = Review.find(params[:id])
+      @review = user_signed_in? ? Review.find(params[:id]) : Review.published.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path
     end
 
     # Only allow a list of trusted parameters through.
     def review_params
 
-      params.require(:review).permit(:film_id, :headline, :content)
+      params.require(:review).permit(:film_id, :headline, :content, :published_at)
     end
 end

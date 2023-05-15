@@ -77,3 +77,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "aws-sdk-s3", require: false
 
 gem "pagy", "~> 6.0"
+
+gem 'sanitize', '~> 4.0', '>= 4.0.1'

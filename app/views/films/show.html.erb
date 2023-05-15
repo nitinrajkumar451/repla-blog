@@ -1,5 +1,5 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+<div >
+  <div >
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
@@ -9,8 +9,9 @@
 
     <div class="flex h-screen">
       <!-- Left side with the image -->
+      
       <% if previous_id.present? %>
-        <div class="w-1/12">
+        <div class="ml-30">
           <%= link_to film_path(previous_id) do %>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -19,12 +20,18 @@
 
         </div>
       <% end %>
+        <div class="w-80 h-80 bg-no-repeat bg-center bg-cover mx-4">
+            <% if @film.poster.present? %>
+              <div class="w-80 h-80 overflow-hidden"> 
 
-      <div class="w-1/2">
-        <%= image_tag @film.poster, class: " object-cover object-center" if @film.poster.present? %>
-      </div>
+                <%= image_tag @film.poster, class: "w-80 h-80 object-contain" %>
+              </div>
+
+            <% end %>
+        </div>
+
       <% if next_id.present? %>
-        <div class="w-1/12">
+        <div class="mr-30">
           <%= link_to film_path(next_id) do %>
 
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
