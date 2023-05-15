@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   end
   #about page route
   get "about", to: "pages#about", as: "about"
-# Defines the root path route ("/")
+  # Defines the root path route ("/")
   root "films#index"
 end
