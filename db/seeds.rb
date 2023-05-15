@@ -16,3 +16,4 @@ User.create(email: "writeto@repla.com", password: "jujutsu", password_confirmati
 #   blog_post = BlogPost.where(title: "Blog Post #{i}").first_or_initialize
 #   blog_post.update(content: "Hello", published_at: Time.current)
 # end
+BlogPost.destroy_all
